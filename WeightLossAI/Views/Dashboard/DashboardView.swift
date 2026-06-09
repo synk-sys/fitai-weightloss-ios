@@ -83,7 +83,7 @@ struct DashboardView: View {
 
             Text(remaining > 0 ? "\(remaining) kcal remaining" : "Daily target reached!")
                 .font(.subheadline)
-                .foregroundStyle(remaining > 0 ? .secondary : .orange)
+                .foregroundStyle(remaining > 0 ? Color.secondary : Color.orange)
         }
         .padding()
         .background(.background)
