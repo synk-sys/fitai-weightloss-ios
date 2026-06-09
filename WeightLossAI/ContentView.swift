@@ -40,7 +40,7 @@ struct ContentView: View {
                 .tag(3)
 
             AIChatView()
-                .tabItem { Label("AI Assistant", systemImage: "brain.head.profile") }
+                .tabItem { Label("Mira", systemImage: "brain.head.profile") }
                 .tag(4)
         }
         .tint(Theme.primary)

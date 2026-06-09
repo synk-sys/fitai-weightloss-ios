@@ -3,7 +3,7 @@ import SwiftUI
 struct AIChatView: View {
     @StateObject private var ai = AIManager.shared
     @State private var messages: [ChatMessage] = [
-        ChatMessage(role: .assistant, content: "Hi beautiful! I'm your personal AI wellness assistant 💕 I'm here to support you with nutrition, movement, mindset, and everything in between — with zero judgment. What's on your mind today?")
+        ChatMessage(role: .assistant, content: "Hi beautiful! I'm Mira, your personal wellness companion 💕 I'm here to support you with nutrition, movement, mindset, and everything in between — with zero judgment. What's on your mind today?")
     ]
     @State private var inputText = ""
     @State private var isLoading = false
@@ -15,7 +15,7 @@ struct AIChatView: View {
                 messageList
                 inputBar
             }
-            .navigationTitle("AI Assistant")
+            .navigationTitle("Mira")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {

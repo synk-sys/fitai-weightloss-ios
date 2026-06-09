@@ -32,7 +32,7 @@ class AIManager: ObservableObject {
         } else if lower.contains("sleep") {
             return "Sleep is one of the most underrated tools for weight loss and overall health. Poor sleep raises hunger hormones and makes cravings harder to resist. Aim for 7–9 hours and treat bedtime like a sacred ritual 🌙"
         } else {
-            return "Hi beautiful! I'm your personal AI wellness assistant. I'm here to support your nutrition, movement, mindset, and everything in between — with zero judgment. What's on your mind today? 💕"
+            return "Hi beautiful! I'm Mira, your personal wellness companion. I'm here to support your nutrition, movement, mindset, and everything in between — with zero judgment. What's on your mind today? 💕"
         }
     }
 }

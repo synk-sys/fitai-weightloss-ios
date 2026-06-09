@@ -86,7 +86,7 @@ struct OnboardingView: View {
                 .animation(.spring(duration: 0.6), value: step)
 
             VStack(spacing: 12) {
-                Text("Welcome to FitAI")
+                Text("Welcome to Bloom")
                     .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(.white)
                 Text("Your wellness journey starts here.\nNourish your body, move with joy,\nand feel your absolute best.")
@@ -99,7 +99,7 @@ struct OnboardingView: View {
             HStack(spacing: 32) {
                 featurePill(icon: "fork.knife", label: "Nutrition")
                 featurePill(icon: "figure.yoga", label: "Movement")
-                featurePill(icon: "sparkles", label: "AI Assistant")
+                featurePill(icon: "sparkles", label: "Mira AI")
             }
             .padding(.top, 8)
         }
