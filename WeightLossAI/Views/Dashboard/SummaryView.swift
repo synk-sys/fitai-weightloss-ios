@@ -8,6 +8,7 @@ struct SummaryView: View {
     @Query private var profiles: [UserProfile]
 
     private var profile: UserProfile? { profiles.first }
+    @State private var showingUnitPrefs = false
 
     private var todayCalories: Int {
         foodEntries.filter { Calendar.current.isDateInToday($0.date) }
@@ -34,6 +35,18 @@ struct SummaryView: View {
             .background(Color(.systemGroupedBackground))
             .navigationTitle("Dashboard")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button { showingUnitPrefs = true } label: {
+                        Image(systemName: "gearshape")
+                    }
+                }
+            }
+            .sheet(isPresented: $showingUnitPrefs) {
+                if let p = profile {
+                    UnitPreferencesView(profile: p)
+                }
+            }
         }
     }
 
@@ -90,9 +103,14 @@ struct SummaryView: View {
         VStack(alignment: .leading, spacing: 10) {
             Label("Current Weight", systemImage: "scalemass.fill").font(.headline)
             if let w = currentWeight {
-                let useMetric = profile?.useMetric != false
-                let display = useMetric ? w : w * 2.20462
-                let unit = useMetric ? "kg" : "lbs"
+                let weightUnit = profile?.weightUnit ?? "kg"
+                let (display, unit): (Double, String) = {
+                    switch weightUnit {
+                    case "lbs":   return (w * 2.20462, "lbs")
+                    case "stone": return (w * 0.157473, "st")
+                    default:      return (w, "kg")
+                    }
+                }()
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text(String(format: "%.1f", display))
                         .font(.system(size: 40, weight: .bold))

@@ -73,7 +73,7 @@ struct OnboardingView: View {
             name: name,
             goalWeightKg: goalKg,
             dailyCalorieTarget: Int(dailyCalories) ?? 1800,
-            useMetric: useMetric
+            weightUnit: useMetric ? "kg" : "lbs"
         )
         modelContext.insert(profile)
     }
