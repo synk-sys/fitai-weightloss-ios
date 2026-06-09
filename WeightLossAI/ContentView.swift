@@ -23,11 +23,11 @@ struct ContentView: View {
 
     private var mainTabView: some View {
         TabView(selection: $selectedTab) {
-            DashboardView()
+            SummaryView()
                 .tabItem { Label("Dashboard", systemImage: "house.fill") }
                 .tag(0)
 
-            FoodLogView()
+            DashboardView()
                 .tabItem { Label("Food", systemImage: "fork.knife") }
                 .tag(1)
 
