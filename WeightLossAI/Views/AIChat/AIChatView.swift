@@ -122,7 +122,7 @@ struct AIChatView: View {
             Button(action: sendMessage) {
                 Image(systemName: "arrow.up.circle.fill")
                     .font(.system(size: 34))
-                    .foregroundStyle(inputText.isEmpty || isLoading ? .secondary : .green)
+                    .foregroundStyle(inputText.isEmpty || isLoading ? Color.secondary : Color.green)
             }
             .disabled(inputText.isEmpty || isLoading)
         }
