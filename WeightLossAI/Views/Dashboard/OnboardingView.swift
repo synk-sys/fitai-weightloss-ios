@@ -99,7 +99,7 @@ struct OnboardingView: View {
             HStack(spacing: 32) {
                 featurePill(icon: "fork.knife", label: "Nutrition")
                 featurePill(icon: "figure.yoga", label: "Movement")
-                featurePill(icon: "sparkles", label: "AI Support")
+                featurePill(icon: "sparkles", label: "AI Assistant")
             }
             .padding(.top, 8)
         }
