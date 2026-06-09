@@ -6,6 +6,7 @@ struct AddFoodView: View {
     @Environment(\.dismiss) private var dismiss
 
     let date: Date
+    var preselectedMeal: String = "Breakfast"
 
     @State private var name = ""
     @State private var calories = ""
@@ -34,6 +35,7 @@ struct AddFoodView: View {
             }
             .navigationTitle("Add Food")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear { mealType = preselectedMeal }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
