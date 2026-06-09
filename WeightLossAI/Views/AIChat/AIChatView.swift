@@ -15,7 +15,7 @@ struct AIChatView: View {
                 messageList
                 inputBar
             }
-            .navigationTitle("AI Coach")
+            .navigationTitle("AI Assistant")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
