@@ -3,7 +3,7 @@ import SwiftUI
 struct AIChatView: View {
     @StateObject private var ai = AIManager.shared
     @State private var messages: [ChatMessage] = [
-        ChatMessage(role: .assistant, content: "Hi! I'm your AI weight-loss coach. Ask me anything about nutrition, exercise, or staying motivated. How can I help you today?")
+        ChatMessage(role: .assistant, content: "Hi beautiful! I'm your personal AI wellness assistant 💕 I'm here to support you with nutrition, movement, mindset, and everything in between — with zero judgment. What's on your mind today?")
     ]
     @State private var inputText = ""
     @State private var isLoading = false

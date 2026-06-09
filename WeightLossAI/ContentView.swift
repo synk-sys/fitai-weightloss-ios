@@ -43,6 +43,6 @@ struct ContentView: View {
                 .tabItem { Label("AI Assistant", systemImage: "brain.head.profile") }
                 .tag(4)
         }
-        .tint(.green)
+        .tint(Theme.primary)
     }
 }

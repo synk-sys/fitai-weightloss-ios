@@ -78,7 +78,7 @@ struct OnboardingView: View {
 
     private var welcomeStep: some View {
         VStack(spacing: 24) {
-            Image(systemName: "figure.run.circle.fill")
+            Image(systemName: "heart.circle.fill")
                 .font(.system(size: 100))
                 .foregroundStyle(.white)
                 .shadow(color: .black.opacity(0.2), radius: 12)
@@ -89,7 +89,7 @@ struct OnboardingView: View {
                 Text("Welcome to FitAI")
                     .font(.system(size: 36, weight: .bold))
                     .foregroundStyle(.white)
-                Text("Your smart weight-loss companion.\nTrack food, workouts, and progress\nwith built-in AI coaching.")
+                Text("Your wellness journey starts here.\nNourish your body, move with joy,\nand feel your absolute best.")
                     .font(.body)
                     .foregroundStyle(.white.opacity(0.85))
                     .multilineTextAlignment(.center)
@@ -97,9 +97,9 @@ struct OnboardingView: View {
             }
 
             HStack(spacing: 32) {
-                featurePill(icon: "fork.knife", label: "Food Log")
-                featurePill(icon: "flame.fill", label: "Workouts")
-                featurePill(icon: "brain.head.profile", label: "AI Coach")
+                featurePill(icon: "fork.knife", label: "Nutrition")
+                featurePill(icon: "figure.yoga", label: "Movement")
+                featurePill(icon: "sparkles", label: "AI Support")
             }
             .padding(.top, 8)
         }
@@ -127,7 +127,7 @@ struct OnboardingView: View {
             stepHeader(
                 icon: "person.circle.fill",
                 title: "What should we call you?",
-                subtitle: "We'll personalise your experience."
+                subtitle: "We'll make everything feel just right for you."
             )
             VStack(alignment: .leading, spacing: 8) {
                 Text("Your name").font(.subheadline).foregroundStyle(.white.opacity(0.8))
@@ -153,7 +153,7 @@ struct OnboardingView: View {
             stepHeader(
                 icon: "person.2.circle.fill",
                 title: "Tell us about you",
-                subtitle: "This helps calculate accurate calorie targets."
+                subtitle: "Helps us tailor your nutrition and wellness plan."
             )
             VStack(spacing: 12) {
                 ForEach(["Male", "Female", "Non-binary", "Not specified"], id: \.self) { option in
@@ -186,8 +186,8 @@ struct OnboardingView: View {
         VStack(spacing: 28) {
             stepHeader(
                 icon: "scalemass.fill",
-                title: "Your weight",
-                subtitle: "Set your starting point and goal."
+                title: "Your body, your journey",
+                subtitle: "Every body is different — let's start from where you are."
             )
             VStack(spacing: 16) {
                 Picker("Unit", selection: $weightUnit) {
@@ -219,8 +219,8 @@ struct OnboardingView: View {
         VStack(spacing: 28) {
             stepHeader(
                 icon: "flame.circle.fill",
-                title: "Daily calorie goal",
-                subtitle: "We recommend 1500–2000 kcal for weight loss."
+                title: "Nourish your body",
+                subtitle: "A sustainable goal keeps you energised and feeling great."
             )
             VStack(spacing: 20) {
                 inputField(label: "Daily target (kcal)", placeholder: "e.g. 1800", text: $dailyCalories, keyboard: .numberPad)
@@ -326,21 +326,21 @@ struct OnboardingView: View {
 
     private var gradientColors: [Color] {
         switch step {
-        case 0: return [Color(hex: "1a1a2e"), Color(hex: "16213e"), Color(hex: "0f3460")]
-        case 1: return [Color(hex: "134e5e"), Color(hex: "71b280")]
-        case 2: return [Color(hex: "373b44"), Color(hex: "4286f4")]
-        case 3: return [Color(hex: "1d4350"), Color(hex: "a43931")]
-        default: return [Color(hex: "134e5e"), Color(hex: "71b280")]
+        case 0: return [Color(hex: "6A0572"), Color(hex: "C4607A"), Color(hex: "E8A0BF")]
+        case 1: return [Color(hex: "C4607A"), Color(hex: "E07B8A")]
+        case 2: return [Color(hex: "9B59B6"), Color(hex: "C4607A")]
+        case 3: return [Color(hex: "E07B8A"), Color(hex: "FFAFBD")]
+        default: return [Color(hex: "C4607A"), Color(hex: "9B59B6")]
         }
     }
 
     private var nextButtonTextColor: Color {
         switch step {
-        case 0: return Color(hex: "0f3460")
-        case 1: return Color(hex: "134e5e")
-        case 2: return Color(hex: "373b44")
-        case 3: return Color(hex: "1d4350")
-        default: return Color(hex: "134e5e")
+        case 0: return Color(hex: "6A0572")
+        case 1: return Color(hex: "C4607A")
+        case 2: return Color(hex: "9B59B6")
+        case 3: return Color(hex: "E07B8A")
+        default: return Color(hex: "C4607A")
         }
     }
 

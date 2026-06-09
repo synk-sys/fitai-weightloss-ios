@@ -60,9 +60,9 @@ struct SummaryView: View {
                     .foregroundStyle(.secondary)
             }
             Spacer()
-            Image(systemName: "figure.walk.circle.fill")
+            Image(systemName: "heart.circle.fill")
                 .font(.system(size: 48))
-                .foregroundStyle(.green)
+                .foregroundStyle(Theme.primary)
         }
         .padding()
         .background(Color(.secondarySystemGroupedBackground))
@@ -72,7 +72,7 @@ struct SummaryView: View {
     private var statsGrid: some View {
         LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {
             statCard(title: "Consumed", value: "\(todayCalories)", unit: "kcal",
-                     icon: "fork.knife.circle.fill", color: .green)
+                     icon: "fork.knife.circle.fill", color: Theme.warm)
             statCard(title: "Remaining", value: "\(remaining)", unit: "kcal",
                      icon: "minus.circle.fill", color: remaining > 0 ? .blue : .orange)
             statCard(title: "Burned", value: "\(todayBurned)", unit: "kcal",
@@ -114,7 +114,7 @@ struct SummaryView: View {
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text(String(format: "%.1f", display))
                         .font(.system(size: 40, weight: .bold))
-                        .foregroundStyle(.green)
+                        .foregroundStyle(Theme.primary)
                     Text(unit).font(.title3).foregroundStyle(.secondary)
                 }
                 if let goal = profile?.goalWeightKg {
