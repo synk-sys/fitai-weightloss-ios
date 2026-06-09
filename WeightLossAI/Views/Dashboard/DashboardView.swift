@@ -151,7 +151,7 @@ struct DashboardView: View {
                 Spacer()
                 Text("\(remaining)")
                     .font(.system(size: 22, weight: .bold))
-                    .foregroundStyle(remaining > 0 ? .primary : .orange)
+                    .foregroundStyle(remaining > 0 ? Color.primary : Color.orange)
                 Text("left")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
