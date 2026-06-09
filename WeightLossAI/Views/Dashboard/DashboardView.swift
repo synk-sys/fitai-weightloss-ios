@@ -302,7 +302,7 @@ struct DashboardView: View {
         case "Breakfast": return "cup.and.saucer.fill"
         case "Lunch":     return "takeoutbag.and.cup.and.straw.fill"
         case "Dinner":    return "fork.knife"
-        default:          return "figure.snorkeling"
+        default:          return "birthday.cake"
         }
     }
 }
