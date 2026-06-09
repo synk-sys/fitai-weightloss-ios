@@ -22,9 +22,6 @@ struct AddFoodView: View {
             Form {
                 Section("Meal Info") {
                     TextField("Food name", text: $name)
-                    Picker("Meal", selection: $mealType) {
-                        ForEach(mealTypes, id: \.self) { Text($0) }
-                    }
                 }
                 Section("Nutrition") {
                     numberField("Calories (kcal)", text: $calories)
