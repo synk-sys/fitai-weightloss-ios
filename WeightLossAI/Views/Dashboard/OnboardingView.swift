@@ -249,44 +249,58 @@ struct OnboardingView: View {
     // MARK: - Bottom bar
 
     private var bottomBar: some View {
-        HStack {
-            if step > 0 {
+        Group {
+            if step == 0 {
                 Button {
-                    withAnimation(.spring(duration: 0.4)) { step -= 1 }
-                } label: {
-                    HStack(spacing: 6) {
-                        Image(systemName: "chevron.left")
-                        Text("Back")
-                    }
-                    .font(.body.bold())
-                    .foregroundStyle(.white.opacity(0.8))
-                }
-            }
-
-            Spacer()
-
-            Button {
-                if step < totalSteps - 1 {
                     withAnimation(.spring(duration: 0.4)) { step += 1 }
-                } else {
-                    saveProfile()
-                }
-            } label: {
-                HStack(spacing: 8) {
-                    Text(step == 0 ? "Get Started" : step == totalSteps - 1 ? "Let's go!" : "Continue")
+                } label: {
+                    Text("Get Started")
                         .font(.body.bold())
-                    if step < totalSteps - 1 {
-                        Image(systemName: "chevron.right")
-                    }
+                        .foregroundStyle(nextButtonTextColor)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(Color.white)
+                        .clipShape(Capsule())
                 }
-                .foregroundStyle(nextButtonTextColor)
-                .padding(.horizontal, 28)
-                .padding(.vertical, 14)
-                .background(Color.white)
-                .clipShape(Capsule())
+            } else {
+                HStack {
+                    Button {
+                        withAnimation(.spring(duration: 0.4)) { step -= 1 }
+                    } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "chevron.left")
+                            Text("Back")
+                        }
+                        .font(.body.bold())
+                        .foregroundStyle(.white.opacity(0.8))
+                    }
+
+                    Spacer()
+
+                    Button {
+                        if step < totalSteps - 1 {
+                            withAnimation(.spring(duration: 0.4)) { step += 1 }
+                        } else {
+                            saveProfile()
+                        }
+                    } label: {
+                        HStack(spacing: 8) {
+                            Text(step == totalSteps - 1 ? "Let's go!" : "Continue")
+                            if step < totalSteps - 1 {
+                                Image(systemName: "chevron.right")
+                            }
+                        }
+                        .font(.body.bold())
+                        .foregroundStyle(nextButtonTextColor)
+                        .padding(.horizontal, 28)
+                        .padding(.vertical, 14)
+                        .background(Color.white)
+                        .clipShape(Capsule())
+                    }
+                    .disabled(!canAdvance)
+                    .opacity(canAdvance ? 1 : 0.5)
+                }
             }
-            .disabled(!canAdvance)
-            .opacity(canAdvance ? 1 : 0.5)
         }
     }
 
