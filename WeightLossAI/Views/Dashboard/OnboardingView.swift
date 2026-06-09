@@ -126,7 +126,7 @@ struct OnboardingView: View {
         VStack(spacing: 28) {
             stepHeader(
                 icon: "person.circle.fill",
-                title: "What's your name?",
+                title: "What should we call you?",
                 subtitle: "We'll personalise your experience."
             )
             VStack(alignment: .leading, spacing: 8) {
