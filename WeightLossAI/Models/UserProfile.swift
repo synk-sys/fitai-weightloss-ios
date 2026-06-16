@@ -9,6 +9,7 @@ final class UserProfile {
     var dailyCalorieTarget: Int
 
     // Unit preferences
+    var goals: [String]         // selected wellness goals
     var weightUnit: String      // "kg", "lbs", "stone"
     var heightUnit: String      // "cm", "ft"
     var distanceUnit: String    // "km", "miles"
@@ -16,7 +17,7 @@ final class UserProfile {
     var waterUnit: String       // "ml", "cups", "floz"
 
     init(name: String = "", goalWeightKg: Double = 70.0,
-         dailyCalorieTarget: Int = 1800,
+         dailyCalorieTarget: Int = 1800, goals: [String] = [],
          weightUnit: String = "kg", heightUnit: String = "cm",
          distanceUnit: String = "km", energyUnit: String = "cal",
          waterUnit: String = "ml") {
@@ -24,6 +25,7 @@ final class UserProfile {
         self.name = name
         self.goalWeightKg = goalWeightKg
         self.dailyCalorieTarget = dailyCalorieTarget
+        self.goals = goals
         self.weightUnit = weightUnit
         self.heightUnit = heightUnit
         self.distanceUnit = distanceUnit

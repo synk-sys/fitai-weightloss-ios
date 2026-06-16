@@ -10,8 +10,14 @@ struct OnboardingView: View {
     @State private var dailyCalories = "1800"
     @State private var weightUnit = "kg"
     @State private var gender = "Not specified"
+    @State private var selectedGoals: Set<String> = []
 
-    private let totalSteps = 5
+    private let totalSteps = 6
+    private let allGoals = [
+        "Lose Weight", "Maintain Weight", "Gain Weight",
+        "Gain Muscle", "Modify My Diet", "Plan Meals",
+        "Manage Stress", "Stay Active"
+    ]
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -39,9 +45,10 @@ struct OnboardingView: View {
                     switch step {
                     case 0: welcomeStep
                     case 1: nameStep
-                    case 2: genderStep
-                    case 3: weightStep
-                    case 4: calorieStep
+                    case 2: goalsStep
+                    case 3: genderStep
+                    case 4: weightStep
+                    case 5: calorieStep
                     default: EmptyView()
                     }
                 }
@@ -146,7 +153,73 @@ struct OnboardingView: View {
         }
     }
 
-    // MARK: - Step 2: Gender
+    // MARK: - Step 2: Goals
+
+    private var goalsStep: some View {
+        VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Hey, \(name.isEmpty ? "there" : name). 👋\nLet's start with your goals.")
+                    .font(.system(size: 26, weight: .bold))
+                    .foregroundStyle(.white)
+                    .lineSpacing(2)
+                Text("Select up to three that are most important to you.")
+                    .font(.subheadline)
+                    .foregroundStyle(.white.opacity(0.75))
+            }
+            .padding(.horizontal, 28)
+
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 10) {
+                    ForEach(allGoals, id: \.self) { goal in
+                        let selected = selectedGoals.contains(goal)
+                        Button {
+                            withAnimation(.spring(duration: 0.25)) {
+                                if selected {
+                                    selectedGoals.remove(goal)
+                                } else if selectedGoals.count < 3 {
+                                    selectedGoals.insert(goal)
+                                }
+                            }
+                        } label: {
+                            HStack {
+                                Text(goal)
+                                    .font(.body.bold())
+                                    .foregroundStyle(.white)
+                                Spacer()
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .strokeBorder(.white.opacity(selected ? 0 : 0.4), lineWidth: 1.5)
+                                        .frame(width: 26, height: 26)
+                                    if selected {
+                                        RoundedRectangle(cornerRadius: 6)
+                                            .fill(Theme.primary)
+                                            .frame(width: 26, height: 26)
+                                        Image(systemName: "checkmark")
+                                            .font(.system(size: 13, weight: .bold))
+                                            .foregroundStyle(.white)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 18)
+                            .background(
+                                RoundedRectangle(cornerRadius: 14)
+                                    .fill(.white.opacity(selected ? 0.2 : 0.08))
+                                    .overlay(
+                                        RoundedRectangle(cornerRadius: 14)
+                                            .strokeBorder(selected ? Color.white : Color.clear, lineWidth: 1.5)
+                                    )
+                            )
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.bottom, 8)
+            }
+        }
+    }
+
+    // MARK: - Step 3: Gender
 
     private var genderStep: some View {
         VStack(spacing: 28) {
@@ -342,8 +415,9 @@ struct OnboardingView: View {
         switch step {
         case 0: return [Color(hex: "6A0572"), Color(hex: "C4607A"), Color(hex: "E8A0BF")]
         case 1: return [Color(hex: "C4607A"), Color(hex: "E07B8A")]
-        case 2: return [Color(hex: "9B59B6"), Color(hex: "C4607A")]
-        case 3: return [Color(hex: "E07B8A"), Color(hex: "FFAFBD")]
+        case 2: return [Color(hex: "7B2D8B"), Color(hex: "C4607A")]
+        case 3: return [Color(hex: "9B59B6"), Color(hex: "C4607A")]
+        case 4: return [Color(hex: "E07B8A"), Color(hex: "FFAFBD")]
         default: return [Color(hex: "C4607A"), Color(hex: "9B59B6")]
         }
     }
@@ -352,8 +426,9 @@ struct OnboardingView: View {
         switch step {
         case 0: return Color(hex: "6A0572")
         case 1: return Color(hex: "C4607A")
-        case 2: return Color(hex: "9B59B6")
-        case 3: return Color(hex: "E07B8A")
+        case 2: return Color(hex: "7B2D8B")
+        case 3: return Color(hex: "9B59B6")
+        case 4: return Color(hex: "E07B8A")
         default: return Color(hex: "C4607A")
         }
     }
@@ -362,9 +437,10 @@ struct OnboardingView: View {
         switch step {
         case 0: return true
         case 1: return !name.trimmingCharacters(in: .whitespaces).isEmpty
-        case 2: return true
-        case 3: return !currentWeight.isEmpty && !goalWeight.isEmpty
-        case 4: return !dailyCalories.isEmpty
+        case 2: return !selectedGoals.isEmpty
+        case 3: return true
+        case 4: return !currentWeight.isEmpty && !goalWeight.isEmpty
+        case 5: return !dailyCalories.isEmpty
         default: return true
         }
     }
@@ -383,6 +459,7 @@ struct OnboardingView: View {
             name: name,
             goalWeightKg: toKg(goalWeight),
             dailyCalorieTarget: Int(dailyCalories) ?? 1800,
+            goals: Array(selectedGoals),
             weightUnit: weightUnit
         )
         modelContext.insert(profile)
